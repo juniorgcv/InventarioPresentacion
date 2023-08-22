@@ -91,7 +91,7 @@ namespace InventarioPresentacion
             {
 
                 this.IdCategoria = Convert.ToInt32(dataGridViewlist.CurrentRow.Cells["IdCategoria"].Value);
-                txtmarca.Text = Convert.ToString(dataGridViewlist.CurrentRow.Cells["Descripcion"].Value);
+                txtdescri.Text = Convert.ToString(dataGridViewlist.CurrentRow.Cells["Descripcion"].Value);
 
             }
 
@@ -108,7 +108,7 @@ namespace InventarioPresentacion
 
         private void btnguardar_Click(object sender, EventArgs e)
         {
-            if(txtmarca.Text== string.Empty)
+            if(txtdescri.Text== string.Empty)
             {
 
                 MessageBox.Show("falta ingresar datos requeridos (*)", "aviso del sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -120,7 +120,7 @@ namespace InventarioPresentacion
                 CECategorias oCa = new CECategorias();
                 string Rpta = "";
                 oCa.IdCategoria = this.IdCategoria;
-                oCa.Descripcion =txtmarca.Text.Trim();
+                oCa.Descripcion =txtdescri.Text.Trim();
                 Rpta = CNCategorias.GuardaCa(EstadoGuardar, oCa);
                 if(Rpta == "Ok")
                 {
@@ -129,8 +129,8 @@ namespace InventarioPresentacion
                     EstadoGuardar = 0; // ninguna accion
                     this.EstadobtnPrincipales(true);
                     this.EstadobtnProcesos(false);
-                    txtmarca.Text = "";
-                    txtmarca.ReadOnly = true;
+                    txtdescri.Text = "";
+                    txtdescri.ReadOnly = true;
                     tabprincipal.SelectedIndex = 0;
                     this.IdCategoria = 0;
 
@@ -143,8 +143,8 @@ namespace InventarioPresentacion
 
                 }
 
-                    this.ListadoCa("%");
 
+                    this.ListadoCa("%");
             }    
         }
 
@@ -153,10 +153,10 @@ namespace InventarioPresentacion
             EstadoGuardar = 1; //nuevo registro
             this.EstadobtnPrincipales(false);
             this.EstadobtnProcesos(true);
-            txtmarca.Text = "";
-            txtmarca.ReadOnly = false;
+            txtdescri.Text = "";
+            txtdescri.ReadOnly = false;
             tabprincipal.SelectedIndex = 1;
-            txtmarca.Focus();
+            txtdescri.Focus();
         }
 
         private void btnactualizar_Click(object sender, EventArgs e)
@@ -166,16 +166,16 @@ namespace InventarioPresentacion
             this.EstadobtnProcesos(true);
             this.SelecionItem();
             tabprincipal.SelectedIndex = 1;
-            txtmarca.ReadOnly = false;
-            txtmarca.Focus();
+            txtdescri.ReadOnly = false;
+            txtdescri.Focus();
         }
 
         private void btncancelar_Click(object sender, EventArgs e)
         {
             EstadoGuardar = 0;// ninguna accion
             this.IdCategoria = 0;
-            txtmarca.Text = "";
-            txtmarca.ReadOnly = true;
+            txtdescri.Text = "";
+            txtdescri.ReadOnly = true;
             this.EstadobtnPrincipales(true);
             this.EstadobtnProcesos(false);
             tabprincipal.SelectedIndex = 0;
@@ -244,7 +244,5 @@ namespace InventarioPresentacion
             oRpt1.txtp1.Text = txtbuscar.Text;
             oRpt1.ShowDialog();
         }
-
-        
     }
 }
